@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:json_annotation/json_annotation.dart';
 
 part 'sdk.g.dart';
@@ -141,69 +139,7 @@ class SigningMethodMaskSdk {
   Map<String, dynamic> toJson() => _$SigningMethodMaskSdkToJson(this);
 }
 
-class KeyPairSdk{
-  final Uint8List publicKey;
-  final Uint8List privateKey;
 
-  KeyPairSdk(this.publicKey, this.privateKey);
-
-  factory KeyPairSdk.fromJson(Map<String, dynamic> json) => _$KeyPairSdkFromJson(json);
-
-  Map<String, dynamic> toJson() => _$KeyPairSdkToJson(this);
-
-  Map<String, dynamic> _$KeyPairSdkToJson(
-      KeyPairSdk instance) =>
-      <String, dynamic>{
-        'privateKey': instance.privateKey,
-        'privateKey': instance.privateKey,
-      };
-}
-
-
-KeyPairSdk _$KeyPairSdkFromJson(Map<String, dynamic> json) {
-  return KeyPairSdk(
-    Uint8List.fromList(json['publicKey'] ?? []),
-    Uint8List.fromList(json['privateKey'] ?? []),
-  );
-}
-
-@JsonSerializable()
-class ManufacturerSdk{
-  final KeyPairSdk keyPairSdk;
-  final String name;
-
-  ManufacturerSdk(this.keyPairSdk, this.name);
-
-  factory ManufacturerSdk.fromJson(Map<String, dynamic> json) => _$ManufacturerSdkFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ManufacturerSdkToJson(this);
-}
-
-@JsonSerializable()
-class AcquirerSdk{
-  final KeyPairSdk keyPairSdk;
-  final String name;
-  final String id;
-
-  AcquirerSdk(this.keyPairSdk, this.name, this.id);
-
-  factory AcquirerSdk.fromJson(Map<String, dynamic> json) => _$AcquirerSdkFromJson(json);
-
-  Map<String, dynamic> toJson() => _$AcquirerSdkToJson(this);
-}
-@JsonSerializable()
-class IssuerSdk{
-  final String name;
-  final String id;
-  final KeyPairSdk dataKeyPair;
-  final KeyPairSdk transactionKeyPair;
-
-  IssuerSdk(this.name, this.id, this.dataKeyPair, this.transactionKeyPair);
-
-  factory IssuerSdk.fromJson(Map<String, dynamic> json) => _$IssuerSdkFromJson(json);
-
-  Map<String, dynamic> toJson() => _$IssuerSdkToJson(this);
-}
 @JsonSerializable()
 class ProductMaskSdk {
   final int rawValue;
