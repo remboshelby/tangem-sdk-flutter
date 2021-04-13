@@ -94,8 +94,8 @@ public class TangemSdkPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
       "purgeWallet" -> purgeWallet(call, result)
       "setPin1" -> setPin1(call, result)
       "setPin2" -> setPin2(call, result)
-      //      "personalize" -> personalize(call, result)
-      //      "depersonalize" -> depersonalize(call, result)
+      "personalize" -> personalize(call, result)
+      "depersonalize" -> depersonalize(call, result)
       "getPlatformVersion" -> result.success("Android ${android.os.Build.VERSION.RELEASE}")
       else -> result.notImplemented()
     }
