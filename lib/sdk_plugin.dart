@@ -74,19 +74,19 @@ class TangemSdk {
         .catchError((error) => _sendBackError(callback, error));
   }
 
-  static Future personalize(Callback callback, [Map<String, dynamic> valuesToExport]) async {
-    _channel
-        .invokeMethod(cPersonalize, valuesToExport)
-        .then((result) => callback.onSuccess(_createResponse(cPersonalize, result)))
-        .catchError((error) => _sendBackError(callback, error));
-  }
+  // static Future personalize(Callback callback, [Map<String, dynamic> valuesToExport]) async {
+  //   _channel
+  //       .invokeMethod(cPersonalize, valuesToExport)
+  //       .then((result) => callback.onSuccess(_createResponse(cPersonalize, result)))
+  //       .catchError((error) => _sendBackError(callback, error));
+  // }
 
-  static Future depersonalize(Callback callback, [Map<String, dynamic> valuesToExport]) async {
-    _channel
-        .invokeMethod(cDepersonalize, valuesToExport)
-        .then((result) => callback.onSuccess(_createResponse(cDepersonalize, result)))
-        .catchError((error) => _sendBackError(callback, error));
-  }
+  // static Future depersonalize(Callback callback, [Map<String, dynamic> valuesToExport]) async {
+  //   _channel
+  //       .invokeMethod(cDepersonalize, valuesToExport)
+  //       .then((result) => callback.onSuccess(_createResponse(cDepersonalize, result)))
+  //       .catchError((error) => _sendBackError(callback, error));
+  // }
 
   static Future createWallet(Callback callback, [Map<String, dynamic> valuesToExport]) async {
     _channel
