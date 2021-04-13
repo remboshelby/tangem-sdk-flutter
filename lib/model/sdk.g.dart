@@ -13,9 +13,9 @@ CardConfigSdk _$CardConfigSdkFromJson(Map<String, dynamic> json) {
     series: json['series'] as String,
     startNumber: json['startNumber'] as int,
     count: json['count'] as int,
-    pin: json['pin'] as List<int>,
-    pin2: json['pin2'] as List<int>,
-    pin3: json['pin3'] as List<int>,
+    pin: (json['pin'] as List)?.map((e) => e as int)?.toList(),
+    pin2: (json['pin2'] as List)?.map((e) => e as int)?.toList(),
+    pin3: (json['pin3'] as List)?.map((e) => e as int)?.toList(),
     hexCrExKey: json['hexCrExKey'] as String,
     cvc: json['cvc'] as String,
     pauseBeforePin2: json['pauseBeforePin2'] as int,
@@ -38,8 +38,7 @@ CardConfigSdk _$CardConfigSdkFromJson(Map<String, dynamic> json) {
     allowSelectBlockchain: json['allowSelectBlockchain'] as bool,
     prohibitPurgeWallet: json['prohibitPurgeWallet'] as bool,
     allowUnencrypted: json['allowUnencrypted'] as bool,
-    allowFastEncryption:
-        json['allowFastEncryption'] as bool,
+    allowFastEncryption: json['allowFastEncryption'] as bool,
     protectIssuerDataAgainstReplay:
         json['protectIssuerDataAgainstReplay'] as bool,
     prohibitDefaultPIN1: json['prohibitDefaultPIN1'] as bool,
@@ -106,7 +105,8 @@ Map<String, dynamic> _$CardConfigSdkToJson(CardConfigSdk instance) =>
           instance.skipCheckPIN2CVCIfValidatedByIssuer,
       'skipSecurityDelayIfValidatedByLinkedTerminal':
           instance.skipSecurityDelayIfValidatedByLinkedTerminal,
-      'restrictOverwriteIssuerExtraData': instance.restrictOverwriteIssuerExtraData,
+      'restrictOverwriteIssuerExtraData':
+          instance.restrictOverwriteIssuerExtraData,
       'requireTerminalTxSignature': instance.requireTerminalTxSignature,
       'requireTerminalCertSignature': instance.requireTerminalCertSignature,
       'checkPIN3OnCard': instance.checkPIN3OnCard,
@@ -164,6 +164,59 @@ Map<String, dynamic> _$SigningMethodMaskSdkToJson(
         SigningMethodMaskSdk instance) =>
     <String, dynamic>{
       'rawValue': instance.rawValue,
+    };
+
+ManufacturerSdk _$ManufacturerSdkFromJson(Map<String, dynamic> json) {
+  return ManufacturerSdk(
+    json['keyPairSdk'] == null
+        ? null
+        : KeyPairSdk.fromJson(json['keyPairSdk'] as Map<String, dynamic>),
+    json['name'] as String,
+  );
+}
+
+Map<String, dynamic> _$ManufacturerSdkToJson(ManufacturerSdk instance) =>
+    <String, dynamic>{
+      'keyPairSdk': instance.keyPairSdk,
+      'name': instance.name,
+    };
+
+AcquirerSdk _$AcquirerSdkFromJson(Map<String, dynamic> json) {
+  return AcquirerSdk(
+    json['keyPairSdk'] == null
+        ? null
+        : KeyPairSdk.fromJson(json['keyPairSdk'] as Map<String, dynamic>),
+    json['name'] as String,
+    json['id'] as String,
+  );
+}
+
+Map<String, dynamic> _$AcquirerSdkToJson(AcquirerSdk instance) =>
+    <String, dynamic>{
+      'keyPairSdk': instance.keyPairSdk,
+      'name': instance.name,
+      'id': instance.id,
+    };
+
+IssuerSdk _$IssuerSdkFromJson(Map<String, dynamic> json) {
+  return IssuerSdk(
+    json['name'] as String,
+    json['id'] as String,
+    json['dataKeyPair'] == null
+        ? null
+        : KeyPairSdk.fromJson(json['dataKeyPair'] as Map<String, dynamic>),
+    json['transactionKeyPair'] == null
+        ? null
+        : KeyPairSdk.fromJson(
+            json['transactionKeyPair'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$IssuerSdkToJson(IssuerSdk instance) => <String, dynamic>{
+      'name': instance.name,
+      'id': instance.id,
+      'dataKeyPair': instance.dataKeyPair,
+      'transactionKeyPair': instance.transactionKeyPair,
     };
 
 ProductMaskSdk _$ProductMaskSdkFromJson(Map<String, dynamic> json) {
